@@ -62,7 +62,7 @@ const columns= [
     editable: true,
   },
   {
-    field: 'area',
+    field: '희망지역',
     headerName: '희망지역',
     width: 120,
     editable: true,
@@ -151,34 +151,6 @@ export default function () {
     <Box sx={{ height: '80vh', width: '100%' }}>
       <div style={{ margin: 10 }}>
         <div className="App">조종사 페이지입니다.</div>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "40ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          {" "}
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <NativeSelect
-              defaultValue={"none"}
-              inputProps={{
-                name: "category",
-                id: "uncontrolled-native",
-              }}
-            >
-              <option value={"none"}>통합검색</option>
-              <option value={"name"}>이름</option>
-              <option value={"id"}>ID</option>
-            </NativeSelect>
-          </FormControl>
-          <TextField id="standard-search" type="search" variant="standard" />
-          <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-            <SearchIcon />
-            <Button variant="outlined" startIcon={<DeleteIcon />} >비활성화</Button>
-          </IconButton>
-        </Box>
       </div>
       <DataGrid
         rows={data}

@@ -48,13 +48,13 @@ const columns = [
     editable: true,
   },
   {
-    field: 'name2',
+    field: '부제목',
     headerName: '부제목',
     width: 120,
     editable: true,
   },
   {
-    field: 'TD수',
+    field: 'TDCount',
     headerName: 'TD수',
     width: 120,
     editable: true,
@@ -72,7 +72,7 @@ const columns = [
     editable: true,
   },
   {
-    field: '참여인원',
+    field: 'TeamCount',
     headerName: '참여인원',
     width: 120,
     editable: true,
@@ -108,7 +108,7 @@ const columns = [
     editable: true,
   },
   {
-    field: '대표주소',
+    field: 'RepresentAddress',
     headerName: '대표주소',
     width: 150,
     editable: true,
@@ -167,33 +167,6 @@ export default function () {
     <Box sx={{ height: '80vh', width: '100%' }}>
       <div style={{ margin: 10 }}>
         <div className="App">Task 페이지입니다.</div>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "40ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          {" "}
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <NativeSelect
-              defaultValue={"none"}
-              inputProps={{
-                name: "category",
-                id: "uncontrolled-native",
-              }}
-            >
-              <option value={"none"}>통합검색</option>
-              <option value={"id"}>ID</option>
-              <option value={"address"}>대표주소</option>
-            </NativeSelect>
-          </FormControl>
-          <TextField id="standard-search" type="search" variant="standard" />
-          <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
-        </Box>
       </div>
 
 

@@ -50,13 +50,13 @@ const columns = [
     editable: true,
   },
   {
-    field: 'tasknum',
+    field: 'TaskCount',
     headerName: 'Task수',
     width: 120,
     editable: true,
   },
   {
-    field: 'tdnum',
+    field: 'TDCount',
     headerName: 'TD수',
     width: 120,
     editable: true,
@@ -145,37 +145,8 @@ export default function () {
   return (
     <Box sx={{ height: '80vh', width: '100%' }}>
       <div style={{ margin: 10 }}>
-      <div className="App">TaskGroup 페이지입니다.</div> 
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "40ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        {" "}
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
-          <NativeSelect
-            defaultValue={"none"}
-            inputProps={{
-              name: "category",
-              id: "uncontrolled-native",
-            }}
-          >
-            <option value={"none"}>통합검색</option>
-            <option value={"title"}>제목</option>
-            <option value={"id"}>ID</option>
-          </NativeSelect>
-        </FormControl>
-        <TextField id="standard-search" type="search" variant="standard" />
-        <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-          <SearchIcon />
-        </IconButton>
-      </Box>
+      <div className="App">TaskGroup 페이지입니다.</div>
     </div>
-  
-      
       <DataGrid
         rows={data}
         columns={columns}

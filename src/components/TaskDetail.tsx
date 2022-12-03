@@ -64,7 +64,7 @@ const columns = [
   },
   {
     field: 'etc',
-    headerName: '작업상태2',
+    headerName: '작업상태2(비고)',
     width: 120,
     editable: true,
   },
@@ -163,33 +163,7 @@ export default function () {
   return (
     <Box sx={{ height: '80vh', width: '100%' }}>
       <div style={{ margin: 10 }}>
-      <div className="App">TaskDetail 페이지입니다.</div> 
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "40ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        {" "}
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
-          <NativeSelect
-            defaultValue={"none"}
-            inputProps={{
-              name: "category",
-              id: "uncontrolled-native",
-            }}
-          >
-            <option value={"none"}>통합검색</option>
-            <option value={"address"}>주소</option>
-          </NativeSelect>
-        </FormControl>
-        <TextField id="standard-search" type="search" variant="standard" />
-        <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-          <SearchIcon />
-        </IconButton>
-      </Box>
+      <div className="App">TaskDetail 페이지입니다.</div>
     </div>
   
       

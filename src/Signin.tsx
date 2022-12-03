@@ -68,7 +68,7 @@ export default function SignIn() {
             }
         }
         catch (error) {
-            alert("Connection Lost.");
+            alert("Connection Lost. / " + error);
         }
     };
 
