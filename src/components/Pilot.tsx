@@ -1,13 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import NativeSelect from "@mui/material/NativeSelect";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
-import IconButton from "@mui/material/IconButton";
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios'
 import Cookies from "js-cookie";
 import { URL } from '../constants/CONSTANTS';
@@ -148,17 +141,16 @@ export default function () {
   }
   if (!data) return <div>유저 정보 없음.</div>;
   return (
-    <Box sx={{ height: '80vh', width: '100%' }}>
+    <Box sx={{ height: '95%', width: '100%' }}>
       <div style={{ margin: 10 }}>
         <div className="App">조종사 페이지입니다.</div>
       </div>
       <DataGrid
         rows={data}
         columns={columns}
-        getRowId={(row) => row.id}
-        pageSize={10}
+        pageSize={12}
         loading={loading}
-        rowsPerPageOptions={[10]}
+        rowsPerPageOptions={[12]}
         checkboxSelection
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}

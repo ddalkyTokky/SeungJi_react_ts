@@ -24,6 +24,7 @@ import TaskGroup from '../components/TaskGroup';
 import Task from '../components/Task';
 import TaskDetail from '../components/TaskDetail';
 import Team from '../components/Team';
+import TaskChart from '../charts/TaskChart';
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
@@ -125,28 +126,28 @@ function DashboardContent() {
   });
 
   const auth_check = async () => {
-    try{
-    const response = await axios.get(URL,
-      {
-        headers: {
-          token: Cookies.get("id")
+    try {
+      const response = await axios.get(URL,
+        {
+          headers: {
+            token: Cookies.get("id")
+          }
+        }
+      );
+      //console.log(Cookies.get("id"))
+      //console.log(response)
+      if (response?.status == 200) {
+        if (response.data == 'No token' || response.data == 'Expired token' || response.data == 'Invalid token' || response.data == 'Undefined token') {
+          alert(response.data + "Login First!");
+          navigate("/", { state: pathname });
         }
       }
-    );
-    //console.log(Cookies.get("id"))
-    //console.log(response)
-    if (response?.status == 200) {
-      if (response.data == 'No token' || response.data == 'Expired token' || response.data == 'Invalid token' || response.data == 'Undefined token') {
-        alert(response.data + "Login First!");
-        navigate("/", { state: pathname });
-      }
+    }
+    catch (err) {
+      alert(err + " Lost Connection");
+      navigate("/", { state: pathname });
     }
   }
-  catch (err) {
-    alert("Lost Connection");
-    navigate("/", { state: pathname });
-  }
-}
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -282,6 +283,21 @@ function DashboardContent() {
                 <ListItemText primary="Team" />
               </ListItemButton>
             </React.Fragment>
+            <Divider sx={{ my: 1 }} />
+            <React.Fragment>
+              <ListSubheader component="div" inset>
+                유저/작업 통계
+              </ListSubheader>
+              <ListItemButton
+                onClick={() => {
+                  setPageState({ whichPage: 'taskChart' });
+                }}>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Task Chart" />
+              </ListItemButton>
+            </React.Fragment>
           </List>
         </Drawer>
         <Box
@@ -297,12 +313,12 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ m: 1 }}>
             <Grid container spacing={3}>
 
               {/* Recent Orders */}
               <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', width: 1600, height: 800 }}>
                   {pageState.whichPage == "pilot" ? <Pilot /> : null}
                   {pageState.whichPage == "farmer" ? <Farmer /> : null}
                   {pageState.whichPage == "market" ? <Market /> : null}
@@ -310,6 +326,7 @@ function DashboardContent() {
                   {pageState.whichPage == "task" ? <Task /> : null}
                   {pageState.whichPage == "taskDetail" ? <TaskDetail /> : null}
                   {pageState.whichPage == "team" ? <Team /> : null}
+                  {pageState.whichPage == "taskChart" ? <TaskChart /> : null}
                 </Paper>
               </Grid>
             </Grid>

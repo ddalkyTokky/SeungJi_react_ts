@@ -159,19 +159,18 @@ export default function () {
     }
     return <div>알 수 없는 에러가 발생했습니다</div>;
   }
-  if (!data) return <div>유저 정보 없음.</div>;
+  if (!data) return <div>TD 정보 없음.</div>;
   return (
-    <Box sx={{ height: '80vh', width: '100%' }}>
+    <Box sx={{ height: '95%', width: '100%' }}>
       <div style={{ margin: 10 }}>
       <div className="App">TaskDetail 페이지입니다.</div>
     </div>
-  
       
       <DataGrid
         rows={data}
         columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
+        pageSize={12}
+        rowsPerPageOptions={[12]}
         checkboxSelection
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
