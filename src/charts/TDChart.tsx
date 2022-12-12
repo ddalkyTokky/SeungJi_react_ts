@@ -84,11 +84,11 @@ export default function () {
                     headers: {
                         token: Cookies.get("id"),
                         request_type: "taskchart",
-                        created: String(createdChecked),
                         ready: String(readyChecked),
-                        assigned: String(assignedChecked),
-                        ing: String(ingChecked),
                         done: String(doneChecked),
+                        not_found: String(not_foundChecked),
+                        deleted: String(deletedChecked),
+                        ing: String(ingChecked)
                     }
                 }
             );
@@ -110,31 +110,31 @@ export default function () {
 
     const { loading, data: data, error } = state; // state.data 를 data 
 
-    const [createdChecked, setCreatedChecked] = React.useState(false);
-    const [readyChecked, setReadyChecked] = React.useState(false);
-    const [assignedChecked, setAssignedChecked] = React.useState(false);
-    const [ingChecked, setIngChecked] = React.useState(false);
     const [doneChecked, setDoneChecked] = React.useState(false);
+    const [readyChecked, setReadyChecked] = React.useState(false);
+    const [not_foundChecked, setNot_foundedChecked] = React.useState(false);
+    const [deletedChecked, setDeletedChecked] = React.useState(false);
+    const [ingChecked, setIngChecked] = React.useState(false);
 
-    const createdHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCreatedChecked(event.target.checked);
+    const doneHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDoneChecked(event.target.checked);
     };
     const readyHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setReadyChecked(event.target.checked);
     };
-    const assignedHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAssignedChecked(event.target.checked);
+    const not_foundHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNot_foundedChecked(event.target.checked);
+    };
+    const deletedHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDeletedChecked(event.target.checked);
     };
     const ingHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIngChecked(event.target.checked);
     };
-    const doneHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDoneChecked(event.target.checked);
-    };
 
     useEffect(() => {
         fetchData();
-    }, [createdChecked, readyChecked, assignedChecked, ingChecked, doneChecked]);
+    }, [doneChecked, readyChecked, not_foundChecked, deletedChecked, ingChecked]);
 
     if (loading) return <div>로딩중..</div>;
     if (error) {
@@ -152,9 +152,9 @@ export default function () {
             <FormControlLabel control=
                 {<Checkbox
                     defaultChecked
-                    checked={createdChecked}
-                    onChange={createdHandleChange}
-                />} label="CREATE" />
+                    checked={doneChecked}
+                    onChange={doneHandleChange}
+                />} label="DONE" />
             <FormControlLabel control=
                 {<Checkbox
                     defaultChecked
@@ -164,21 +164,21 @@ export default function () {
             <FormControlLabel control=
                 {<Checkbox
                     defaultChecked
-                    checked={assignedChecked}
-                    onChange={assignedHandleChange}
-                />} label="ASSIGNED" />
+                    checked={not_foundChecked}
+                    onChange={not_foundHandleChange}
+                />} label="NOT_FOUND" />
+            <FormControlLabel control=
+                {<Checkbox
+                    defaultChecked
+                    checked={deletedChecked}
+                    onChange={deletedHandleChange}
+                />} label="DELETE" />
             <FormControlLabel control=
                 {<Checkbox
                     defaultChecked
                     checked={ingChecked}
                     onChange={ingHandleChange}
                 />} label="ING" />
-            <FormControlLabel control=
-                {<Checkbox
-                    defaultChecked
-                    checked={doneChecked}
-                    onChange={doneHandleChange}
-                />} label="DONE" />
 
 
             <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -201,7 +201,7 @@ export default function () {
                     stroke="#8884d8"
                     activeDot={{ r: 8 }} />
             </LineChart>
-            <Grid> Task페이지입니다.</Grid>
+            <Grid> TD페이지입니다.</Grid>
         </FormGroup>
 
 

@@ -86,9 +86,8 @@ export default function () {
                         request_type: "taskchart",
                         created: String(createdChecked),
                         ready: String(readyChecked),
-                        assigned: String(assignedChecked),
-                        ing: String(ingChecked),
-                        done: String(doneChecked),
+                        uploaded: String(uploadedChecked),
+                        generated: String(generatedChecked)
                     }
                 }
             );
@@ -112,9 +111,8 @@ export default function () {
 
     const [createdChecked, setCreatedChecked] = React.useState(false);
     const [readyChecked, setReadyChecked] = React.useState(false);
-    const [assignedChecked, setAssignedChecked] = React.useState(false);
-    const [ingChecked, setIngChecked] = React.useState(false);
-    const [doneChecked, setDoneChecked] = React.useState(false);
+    const [uploadedChecked, setUploadedChecked] = React.useState(false);
+    const [generatedChecked, setGeneratedChecked] = React.useState(false);
 
     const createdHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCreatedChecked(event.target.checked);
@@ -122,19 +120,16 @@ export default function () {
     const readyHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setReadyChecked(event.target.checked);
     };
-    const assignedHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAssignedChecked(event.target.checked);
+    const uploadedHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUploadedChecked(event.target.checked);
     };
-    const ingHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIngChecked(event.target.checked);
-    };
-    const doneHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDoneChecked(event.target.checked);
+    const generatedHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setGeneratedChecked(event.target.checked);
     };
 
     useEffect(() => {
         fetchData();
-    }, [createdChecked, readyChecked, assignedChecked, ingChecked, doneChecked]);
+    }, [createdChecked, readyChecked, uploadedChecked, generatedChecked]);
 
     if (loading) return <div>로딩중..</div>;
     if (error) {
@@ -164,21 +159,15 @@ export default function () {
             <FormControlLabel control=
                 {<Checkbox
                     defaultChecked
-                    checked={assignedChecked}
-                    onChange={assignedHandleChange}
-                />} label="ASSIGNED" />
+                    checked={uploadedChecked}
+                    onChange={uploadedHandleChange}
+                />} label="UPLOADED" />
             <FormControlLabel control=
                 {<Checkbox
                     defaultChecked
-                    checked={ingChecked}
-                    onChange={ingHandleChange}
-                />} label="ING" />
-            <FormControlLabel control=
-                {<Checkbox
-                    defaultChecked
-                    checked={doneChecked}
-                    onChange={doneHandleChange}
-                />} label="DONE" />
+                    checked={generatedChecked}
+                    onChange={generatedHandleChange}
+                />} label="GENERATED" />
 
 
             <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -201,7 +190,7 @@ export default function () {
                     stroke="#8884d8"
                     activeDot={{ r: 8 }} />
             </LineChart>
-            <Grid> Task페이지입니다.</Grid>
+            <Grid> TG페이지입니다.</Grid>
         </FormGroup>
 
 

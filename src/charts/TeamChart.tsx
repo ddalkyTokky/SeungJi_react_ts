@@ -85,10 +85,8 @@ export default function () {
                         token: Cookies.get("id"),
                         request_type: "taskchart",
                         created: String(createdChecked),
-                        ready: String(readyChecked),
-                        assigned: String(assignedChecked),
                         ing: String(ingChecked),
-                        done: String(doneChecked),
+                        done: String(doneChecked)
                     }
                 }
             );
@@ -111,19 +109,11 @@ export default function () {
     const { loading, data: data, error } = state; // state.data 를 data 
 
     const [createdChecked, setCreatedChecked] = React.useState(false);
-    const [readyChecked, setReadyChecked] = React.useState(false);
-    const [assignedChecked, setAssignedChecked] = React.useState(false);
     const [ingChecked, setIngChecked] = React.useState(false);
     const [doneChecked, setDoneChecked] = React.useState(false);
 
     const createdHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCreatedChecked(event.target.checked);
-    };
-    const readyHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setReadyChecked(event.target.checked);
-    };
-    const assignedHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAssignedChecked(event.target.checked);
     };
     const ingHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIngChecked(event.target.checked);
@@ -134,7 +124,7 @@ export default function () {
 
     useEffect(() => {
         fetchData();
-    }, [createdChecked, readyChecked, assignedChecked, ingChecked, doneChecked]);
+    }, [createdChecked, ingChecked, doneChecked]);
 
     if (loading) return <div>로딩중..</div>;
     if (error) {
@@ -155,18 +145,6 @@ export default function () {
                     checked={createdChecked}
                     onChange={createdHandleChange}
                 />} label="CREATE" />
-            <FormControlLabel control=
-                {<Checkbox
-                    defaultChecked
-                    checked={readyChecked}
-                    onChange={readyHandleChange}
-                />} label="READY" />
-            <FormControlLabel control=
-                {<Checkbox
-                    defaultChecked
-                    checked={assignedChecked}
-                    onChange={assignedHandleChange}
-                />} label="ASSIGNED" />
             <FormControlLabel control=
                 {<Checkbox
                     defaultChecked
@@ -201,7 +179,7 @@ export default function () {
                     stroke="#8884d8"
                     activeDot={{ r: 8 }} />
             </LineChart>
-            <Grid> Task페이지입니다.</Grid>
+            <Grid> Team페이지입니다.</Grid>
         </FormGroup>
 
 

@@ -24,7 +24,10 @@ import TaskGroup from '../components/TaskGroup';
 import Task from '../components/Task';
 import TaskDetail from '../components/TaskDetail';
 import Team from '../components/Team';
+import TGChart from '../charts/TGChart';
 import TaskChart from '../charts/TaskChart';
+import TDChart from '../charts/TDChart';
+import TeamChart from '../charts/TeamChart';
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
@@ -290,12 +293,39 @@ function DashboardContent() {
               </ListSubheader>
               <ListItemButton
                 onClick={() => {
+                  setPageState({ whichPage: 'tgChart' });
+                }}>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="TG Chart" />
+              </ListItemButton>
+              <ListItemButton
+                onClick={() => {
                   setPageState({ whichPage: 'taskChart' });
                 }}>
                 <ListItemIcon>
                   <BarChartIcon />
                 </ListItemIcon>
                 <ListItemText primary="Task Chart" />
+              </ListItemButton>
+              <ListItemButton
+                onClick={() => {
+                  setPageState({ whichPage: 'tdChart' });
+                }}>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="TD Chart" />
+              </ListItemButton>
+              <ListItemButton
+                onClick={() => {
+                  setPageState({ whichPage: 'teamChart' });
+                }}>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Team Chart" />
               </ListItemButton>
             </React.Fragment>
           </List>
@@ -326,7 +356,10 @@ function DashboardContent() {
                   {pageState.whichPage == "task" ? <Task /> : null}
                   {pageState.whichPage == "taskDetail" ? <TaskDetail /> : null}
                   {pageState.whichPage == "team" ? <Team /> : null}
+                  {pageState.whichPage == "tgChart" ? <TGChart /> : null}
                   {pageState.whichPage == "taskChart" ? <TaskChart /> : null}
+                  {pageState.whichPage == "tdChart" ? <TDChart /> : null}
+                  {pageState.whichPage == "teamChart" ? <TeamChart /> : null}
                 </Paper>
               </Grid>
             </Grid>
